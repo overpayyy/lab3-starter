@@ -23,7 +23,10 @@ namespace lab3.Controllers
 
         public async Task<IActionResult> Article(string id)
         {
-            var post = await _context.Articles.FirstOrDefaultAsync(p => p.Id == id);
+            var post = await _context.Articles
+                .Include(a => a.Comments)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
             if (post == null) return NotFound();
 
             var viewModel = post.ToViewModel();
