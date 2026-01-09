@@ -11,3 +11,9 @@
         @Html.Raw(Model.Content)
     </div>
 </article>
+
+<hr />
+<section>
+    <h3>Add a comment</h3>
+    @await Html.PartialAsync("_AddComment", new lab3.Models.CreateBlogCommentModel { ArticleId = Model.Id })
+</section>

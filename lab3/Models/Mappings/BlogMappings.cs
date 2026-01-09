@@ -17,5 +17,13 @@ namespace lab3.Models.Mappings
             Description = blogArticle.Description ?? string.Empty,
             Content = blogArticle.Content
         };
+
+        public static BlogComment ToEntity(this CreateBlogCommentModel comment) => new()
+        {
+            ArticleId = comment.ArticleId,
+            Author = comment.Author,
+            Content = comment.Content,
+            CreatedAt = DateTime.UtcNow
+        };
     }
 }

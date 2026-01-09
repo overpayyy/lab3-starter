@@ -57,5 +57,21 @@ namespace lab3.Controllers
 
             return RedirectToAction(nameof(Article), new { id = entity.Id });
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddComment(CreateBlogCommentModel model)
+        {
+            var article = await _context.Articles.FirstOrDefaultAsync(a => a.Id == model.ArticleId);
+            if (article == null)
+            {
+                return NotFound();
+            }
+
+            var entity = model.ToEntity();
+            _context.Comments.Add(entity);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Article), new { id = model.ArticleId });
+        }
     }
 }
