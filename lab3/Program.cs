@@ -1,6 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<lab3.Data.BlogContext>();
 
 var app = builder.Build();
 
